@@ -9,7 +9,6 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.network "public_network"
-    config.vm.network "private_network", ip: "172.168.90.65"
     config.vm.hostname = "#{hostname}"
 
     config.vm.define "u14" do |u14|
@@ -24,11 +23,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       el6.vm.box = 'puppetlabs/centos-6.6-64-nocm'
     end
 
-    config.vm.define "el7" do |el7|
-      el7.vm.box = 'centos/7'
+    config.vm.define "centos7" do |centos7|
+      centos7.vm.box = 'centos/7'
     end
 
-    config.vm.define "centos71" do |centos7|
+    config.vm.define "centos71" do |centos71|
       centos71.vm.box = 'bento/centos-7.1'
     end
 
