@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       centos66.vm.box = 'puppetlabs/centos-6.6-64-nocm'
     end
 
-    # Untested.
+    # Untested. No bootstrap script.
     config.vm.define "centos67" do |centos67|
       centos67.vm.box = 'bento/centos-6.7'
     end
