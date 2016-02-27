@@ -17,18 +17,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       u14.vm.box = 'bento/ubuntu-14.04'
     end
 
-    # DOESN'T WORK
-    # sudo apt-get install curl
-    # config.vm.define "u15" do |u15|
-    #  u15.vm.box = 'bento/ubuntu-15.04'
-    # end
-
-    # Untested. No bootstrap script.
+    # sudo service iptables stop (blocks port 443 needed for UI)
     config.vm.define "centos66" do |centos66|
       centos66.vm.box = 'puppetlabs/centos-6.6-64-nocm'
     end
 
-    # Untested. No bootstrap script.
     config.vm.define "centos67" do |centos67|
       centos67.vm.box = 'bento/centos-6.7'
     end
