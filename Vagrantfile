@@ -8,20 +8,37 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
-    config.vm.network "private_network", ip: "172.168.90.65"
+    config.vm.network "public_network"
     config.vm.hostname = "#{hostname}"
 
+    # sudo apt-get install curl
+    # Needs sudo ./st2bootstrap-deb.sh
     config.vm.define "u14" do |u14|
-      u14.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
+      u14.vm.box = 'bento/ubuntu-14.04'
     end
 
-    config.vm.define "el6" do |el6|
-      el6.vm.box = 'puppetlabs/centos-6.6-64-nocm'
+    # sudo service iptables stop (blocks port 443 needed for UI)
+    config.vm.define "centos66" do |centos66|
+      centos66.vm.box = 'puppetlabs/centos-6.6-64-nocm'
     end
 
-    config.vm.define "el7" do |el7|
-      el7.vm.box = 'puppetlabs/centos-7.0-64-nocm'
+    config.vm.define "centos67" do |centos67|
+      centos67.vm.box = 'bento/centos-6.7'
+    end
+
+    # sudo yum install wget (to download st2bootstrap-el7.sh)
+    # sudo yum install net-tools (to get ifconfig)
+    config.vm.define "centos7" do |centos7|
+      centos7.vm.box = 'centos/7'
+    end
+
+    # sudo yum install wget (to download st2bootstrap-el7.sh)
+    config.vm.define "centos71" do |centos71|
+      centos71.vm.box = 'bento/centos-7.1'
+    end
+
+    config.vm.define "centos72" do |centos72|
+      centos72.vm.box = 'bento/centos-7.2'
     end
 
     config.vm.provider :virtualbox do |vb|
@@ -30,9 +47,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.cpus = 2
     end
 
-    config.vm.synced_folder "/Users/manas/blog-dev", "/blog-dev/", type:"nfs"
     # Configure a private network
-
-    # config.vm.provision "shell", inline: "curl -sSL http://stackstorm.com/install.sh | sudo su"
-
 end
