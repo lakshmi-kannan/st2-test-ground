@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.network "public_network"
+    config.vm.network "private_network", ip: "192.168.90.60"
     config.vm.hostname = "#{hostname}"
 
     # sudo apt-get install curl
